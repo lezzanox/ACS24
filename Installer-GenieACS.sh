@@ -57,7 +57,7 @@ main() {
   files="${SCRIPT_MAP[$script]}"
   if [[ "$files" == "functions.sh" ]]; then
     echo " -> Menggunakan functions.sh hasil patch lokal..."
-    cp ~/genieacs/functions.sh "${WORK_DIR}/functions.sh"
+    cp ~/ACS24/functions.sh "${WORK_DIR}/functions.sh"
     continue
   fi
   echo " -> Menyiapkan ${script}..."
