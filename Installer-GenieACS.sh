@@ -54,10 +54,15 @@ main() {
     ["package.bundle"]="common.tar.gz"
   )
   for script in "${!SCRIPT_MAP[@]}"; do
-    local files="${SCRIPT_MAP[$script]}"
-    echo " -> Menyiapkan ${script}..."
-    curl -sSL -o "${files}" "${BASE_URL}/${files}"
-  done
+  files="${SCRIPT_MAP[$script]}"
+  if [[ "$files" == "functions.sh" ]]; then
+    echo " -> Menggunakan functions.sh hasil patch lokal..."
+    cp ~/genieacs/functions.sh "${WORK_DIR}/functions.sh"
+    continue
+  fi
+  echo " -> Menyiapkan ${script}..."
+  curl -sSL -o "${files}" "${BASE_URL}/${files}"
+done
   tar -xzf common.tar.gz
   export SCRIPT_DIR="$WORK_DIR"
   source "${SCRIPT_DIR}/functions.sh"
